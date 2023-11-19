@@ -30,35 +30,37 @@ const Menu: FC = () => {
   ];
 
   return (
-    <div
-      onMouseEnter={openMenu}
-      onMouseLeave={closeMenu}
-      className={styles.menuContainer}
-      style={{ width: isMenuOpen ? "290px" : "100px" }}
-    >
-      {isMenuOpen && (
-        <div className={styles.avatarContainer}>
-          <img src={avatar} className={styles.avatar} />
-          <span>Daniel</span>
-        </div>
-      )}
-
-      <div className={styles.iconsWrapper}>
-        {menuIcons.map(({ label, icon }) => (
-          <div className={styles.iconsContainer} key={label}>
-            <img src={icon} className={styles.icon} />
-            {isMenuOpen && <span className={styles.iconsLabel}>{label}</span>}
+    <div className={styles.wrapper}>
+      <div
+        onMouseEnter={openMenu}
+        onMouseLeave={closeMenu}
+        className={styles.menuContainer}
+        style={{ width: isMenuOpen ? "290px" : "100px" }}
+      >
+        {isMenuOpen && (
+          <div className={styles.avatarContainer}>
+            <img src={avatar} className={styles.avatar} />
+            <span>Daniel</span>
           </div>
-        ))}
-      </div>
+        )}
 
-      {isMenuOpen && (
-        <div className={styles.helpBlock}>
-          <div>Language</div>
-          <div>Get Help</div>
-          <div>Exit</div>
+        <div className={styles.iconsWrapper}>
+          {menuIcons.map(({ label, icon }) => (
+            <div className={styles.iconsContainer} key={label}>
+              <img src={icon} className={styles.icon} />
+              {isMenuOpen && <span className={styles.iconsLabel}>{label}</span>}
+            </div>
+          ))}
         </div>
-      )}
+
+        {isMenuOpen && (
+          <div className={styles.helpBlock}>
+            <div>Language</div>
+            <div>Get Help</div>
+            <div>Exit</div>
+          </div>
+        )}
+      </div>
     </div>
   );
 };

@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, useState } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -13,21 +13,38 @@ type TrendingPropsType = {
 };
 
 const Trending: FC<TrendingPropsType> = ({ movies, handleFeaturedChange }) => {
+  const [isDragging, setDragging] = useState(false);
+
   const settings = {
-    dots: true,
+    dots: false,
     infinite: false,
     speed: 500,
     slidesToShow: 8,
     slidesToScroll: 2,
-    initialSlide: 0,
+    initialSlide: 8,
     responsive: [
       {
-        breakpoint: 1024,
+        breakpoint: 1600,
+        settings: {
+          slidesToShow: 6,
+          slidesToScroll: 3,
+          initialSlide: 6,
+        },
+      },
+      {
+        breakpoint: 1400,
+        settings: {
+          slidesToShow: 4,
+          slidesToScroll: 3,
+          initialSlide: 4,
+        },
+      },
+      {
+        breakpoint: 1124,
         settings: {
           slidesToShow: 3,
           slidesToScroll: 3,
-          infinite: true,
-          dots: true,
+          initialSlide: 3,
         },
       },
       {
@@ -43,9 +60,18 @@ const Trending: FC<TrendingPropsType> = ({ movies, handleFeaturedChange }) => {
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
+          initialSlide: 1,
         },
       },
     ],
+    beforeChange: () => setDragging(true),
+    afterChange: () => setDragging(false),
+  };
+
+  const handleClick = (movie: TMovie) => {
+    if (!isDragging) {
+      handleFeaturedChange(movie);
+    }
   };
 
   return (
@@ -56,7 +82,7 @@ const Trending: FC<TrendingPropsType> = ({ movies, handleFeaturedChange }) => {
           <div
             key={index}
             className={styles.sliderItem}
-            onClick={() => handleFeaturedChange(item)}
+            onClick={() => handleClick(item)}
           >
             <img
               width={180}
