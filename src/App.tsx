@@ -10,8 +10,14 @@ import styles from "./styles.module.scss";
 function App() {
   const [trending, setTrending] = useState<TMovie[] | []>([]);
   const [featured, setFeatured] = useState<TMovie | null>(null);
-  const [isPlay, setIsPlay] = useState(true);
+  const [isPlay, setIsPlay] = useState(false);
   const FEATURED = "featured";
+
+  const playWithDelay = () => {
+    setTimeout(() => {
+      setIsPlay(true);
+    }, 2000);
+  };
 
   useEffect(() => {
     const isInSStorage = !!sessionStorage?.getItem(FEATURED);
@@ -32,9 +38,10 @@ function App() {
         ...data.TendingNow.slice(itemIndex + 1),
       ];
       setTrending(updatedData);
-      return;
+    } else {
+      data?.TendingNow && setTrending(data.TendingNow);
     }
-    data?.TendingNow && setTrending(data.TendingNow);
+    playWithDelay();
   }, []);
 
   const handleFeaturedChange = (movie: TMovie) => {
@@ -42,9 +49,7 @@ function App() {
     setFeatured(movie);
     sessionStorage.setItem("featured", JSON.stringify(movie));
 
-    setTimeout(() => {
-      setIsPlay(true);
-    }, 2000);
+    playWithDelay();
   };
 
   return (

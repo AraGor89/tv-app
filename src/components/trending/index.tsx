@@ -21,7 +21,7 @@ const Trending: FC<TrendingPropsType> = ({ movies, handleFeaturedChange }) => {
     speed: 500,
     slidesToShow: 8,
     slidesToScroll: 2,
-    initialSlide: 8,
+    initialSlide: 0,
     responsive: [
       {
         breakpoint: 1600,
