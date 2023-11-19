@@ -1,0 +1,14 @@
+@import "../../assets/css/variables.scss";
+
+.trendingContainer {
+  color: $white;
+  padding: 8px;
+  padding: 0 40px;
+  font-size: 22px;
+
+  .sliderItem {
+    cursor: pointer;
+    border: none;
+    outline: none;
+  }
+}

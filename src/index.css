@@ -1,0 +1,11 @@
+@font-face {
+  font-family: "Tajawal";
+  src: url("./assets/fonts/Tajawal-Regular.ttf") format("truetype");
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  font-family: "Tajawal", sans-serif;
+  box-sizing: border-box;
+}
